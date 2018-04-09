@@ -1,5 +1,4 @@
-# same as Dockerfile.ubuntu (ubuntu-14.04)
-FROM debian:jessie
+FROM ubuntu:14.04
 MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
 
 # LABEL author.user1="DrTrigon <dr.trigon@surfeu.ch>"
