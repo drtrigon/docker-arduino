@@ -17,9 +17,13 @@ install:
   - REPO=pywikibotcatfiles/file-metadata ;
   - LATEST=ubuntu-14.04 ;
   - echo $DOCKERFILE - $COMMIT - $REPO - $LATEST
+  - sudo apt-get install tree
+  - tree
+  - lstat /home/travis/build/drtrigon/docker-eagle/Dockerfile.ubuntu
+  - lstat $DOCKERFILE
+  - ls -la $DOCKERFILE
 #  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
-#  - docker build -f $DOCKERFILE -t $REPO:$COMMIT . ;
-  - docker build -t $REPO:$COMMIT -f $DOCKERFILE . ;
+  - docker build -f $DOCKERFILE -t $REPO:$COMMIT . ;
 #  - docker tag $REPO:$COMMIT $REPO:$DOCKERTAG ;
 #  # - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER ;
 #  - if [[ "$DOCKERTAG" == "$LATEST" ]] ; then
