@@ -1,0 +1,41 @@
+# same as Dockerfile.ubuntu (ubuntu-14.04)
+FROM debian:jessie
+MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
+
+# LABEL author.user1="DrTrigon <dr.trigon@surfeu.ch>"
+
+# Environment Variables
+ENV ARDUINO_VERSION 1.8.2
+#ENV BOARD "arduino:avr:nano:cpu=atmega328"
+
+# Initial update
+RUN apt-get -y update
+
+# Tree
+RUN sudo apt-get install tree
+
+# Arduino IDE
+RUN wget http://downloads.arduino.cc/arduino-$ARDUINO_VERSION-linux64.tar.xz
+RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
+RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
+RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+
+
+RUN tree
+
+
+# setup a pseudo-display
+#RUN "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
+
+#RUN sleep 3
+
+#RUN export DISPLAY=:1.0
+
+
+#RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/MultiWii_2_4/MultiWii/MultiWii.ino
+RUN arduino --help
+
+
+# verify code, generate elf+hex
+
+# using USB hardware bridge/forward (all os?) me be we could use it to upload code
