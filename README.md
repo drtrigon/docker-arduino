@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/drtrigon/docker-arduino.svg?branch=master)](https://travis-ci.org/drtrigon/docker-arduino)
+
 https://github.com/pywikibot-catfiles/docker-file-metadata
 
 https://github.com/drtrigon/sketchbook
