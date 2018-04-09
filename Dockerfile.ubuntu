@@ -11,10 +11,10 @@ ENV ARDUINO_VERSION 1.8.2
 RUN apt-get -y update
 
 # Wget
-RUN sudo apt-get install wget
+RUN apt-get install -y wget
 
 # Tree
-RUN sudo apt-get install tree
+RUN apt-get install -y tree
 
 # Arduino IDE
 RUN wget http://downloads.arduino.cc/arduino-$ARDUINO_VERSION-linux64.tar.xz
