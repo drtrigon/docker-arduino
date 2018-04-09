@@ -10,6 +10,9 @@ ENV ARDUINO_VERSION 1.8.2
 # Initial update
 RUN apt-get -y update
 
+# Wget
+RUN sudo apt-get install wget
+
 # Tree
 RUN sudo apt-get install tree
 
