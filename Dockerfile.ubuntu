@@ -10,10 +10,13 @@ ENV ARDUINO_VERSION 1.8.2
 # Initial update
 RUN apt-get -y update
 
-# Wget
+# wget
 RUN apt-get install -y wget
 
-# Tree
+# xz (for tar)
+RUN apt-get install -y xz-utils
+
+# tree
 RUN apt-get install -y tree
 
 # Arduino IDE
