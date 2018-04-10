@@ -12,8 +12,6 @@ RUN apt-get -y update
 
 # Basic packages
 RUN apt-get install -y \
-#  build-essential \
-#  make \
   git
 
 # wget
@@ -22,13 +20,13 @@ RUN apt-get install -y wget
 # xz (for tar)
 RUN apt-get install -y xz-utils
 
-# tree
-RUN apt-get install -y tree
-
 # binutils (for readelf)
 RUN apt-get install -y binutils
 
-# Arduino IDE
+# tree
+RUN apt-get install -y tree
+
+# Install Arduino IDE
 RUN wget http://downloads.arduino.cc/arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
@@ -40,29 +38,27 @@ RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 # e.g. use it to verify arduino code, generate elf+hex files,
 # upload code by using USB hardware bridge/forward (all os?)
 
-
-# (see example below...)
+# see example at http...
 
 ### END docker-arduino / START individual dockers resp. testing of docker-arduino ###
 
-# clone repository
+# Clone repository
 RUN git clone https://github.com/drtrigon/sketchbook.git
 
-## setup a pseudo-display
+## Setup a pseudo-display/window manager
 #RUN "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
 #RUN sleep 3
 #RUN export DISPLAY=:1.0
 
-# run arduino verify
+# Run Arduino verify
 RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
 
-# output post-verify info
-RUN tree
-RUN find /tmp/ -name "MultiWii.ino.elf"
-RUN export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`
+# Output post-verify info
+RUN export ELF_FILE=$(find /tmp/ -name "MultiWii.ino.elf")
 RUN echo $ELF_FILE
-ENV ELF_FILE `find /tmp/ -name "MultiWii.ino.elf"`
+ENV ELF_FILE $(find /tmp/ -name "MultiWii.ino.elf")
 RUN echo $ELF_FILE
 RUN readelf -a $ELF_FILE
 RUN strings -d $ELF_FILE
 RUN size $ELF_FILE
+RUN tree
