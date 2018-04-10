@@ -54,11 +54,7 @@ RUN git clone https://github.com/drtrigon/sketchbook.git
 RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
 
 # Output post-verify info
-RUN export ELF_FILE=$(find /tmp/ -name "MultiWii.ino.elf")
-RUN echo $ELF_FILE
-ENV ELF_FILE $(find /tmp/ -name "MultiWii.ino.elf")
-RUN echo $ELF_FILE
-RUN readelf -a $ELF_FILE
-RUN strings -d $ELF_FILE
-RUN size $ELF_FILE
+RUN export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`; readelf -a $ELF_FILE
+RUN export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`; strings -d $ELF_FILE
+RUN export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`; size $ELF_FILE
 RUN tree
