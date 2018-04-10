@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/drtrigon/docker-arduino.svg?branch=master)](https://travis-ci.org/drtrigon/docker-arduino)
-[![Image Status](https://images.microbadger.com/badges/image/pywikibotcatfiles/file-metadata.svg)](https://microbadger.com/images/pywikibotcatfiles/file-metadata)
+[![Image Status](https://images.microbadger.com/badges/image/drtrigon/docker-arduino.svg)](https://microbadger.com/images/drtrigon/docker-arduino)
 
 https://github.com/pywikibot-catfiles/docker-file-metadata
 
