@@ -31,7 +31,7 @@ RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
 RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 
-### END docker-arduino / START individual dockers ###
+### END docker-arduino / START individual dockers resp. testing of docker-arduino ###
 
 RUN git clone https://github.com/drtrigon/sketchbook.git
 
@@ -44,8 +44,10 @@ RUN git clone https://github.com/drtrigon/sketchbook.git
 
 
 # run arduin verify
-CMD ls -la sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino 1>&2
-CMD ls -la $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino 2>&1
+#CMD ls -la sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino 1>&2
+#CMD ls -la $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino 2>&1
+CMD ls -la sketchbook/MultiWii_2_4/MultiWii/
+CMD ls -la $PWD/sketchbook/MultiWii_2_4/MultiWii/
 #CMD arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/MultiWii_2_4/MultiWii/MultiWii.ino
 CMD arduino --verify --board $BOARD --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
 
