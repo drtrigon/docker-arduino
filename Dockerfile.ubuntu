@@ -10,6 +10,12 @@ ENV ARDUINO_VERSION 1.8.2
 # Initial update
 RUN apt-get -y update
 
+# Basic packages
+RUN apt-get install -y \
+#  build-essential \
+#  make \
+  git
+
 # wget
 RUN apt-get install -y wget
 
