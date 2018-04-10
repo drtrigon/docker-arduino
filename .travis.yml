@@ -29,6 +29,7 @@ install:
 script:
   - docker images ;
 #  - docker run -w /opt/file-metadata -t --rm $REPO:$COMMIT python -m pytest ;
+  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
   - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
   - docker run -t --rm $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
