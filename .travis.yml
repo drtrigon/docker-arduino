@@ -18,7 +18,6 @@ install:
   - COMMIT=${TRAVIS_COMMIT::8} ;
   - REPO=drtrigon/docker-arduino ;
   - LATEST=ubuntu-14.04 ;
-  - echo $DOCKERFILE - $COMMIT - $REPO - $LATEST
   - docker login -u $DOCKER_USER -p $DOCKER_PASS ;
   - docker build -f $DOCKERFILE -t $REPO:$COMMIT . ;
   - docker tag $REPO:$COMMIT $REPO:$DOCKERTAG ;
@@ -47,6 +46,8 @@ script:
 #        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/drtrigon%2Finstall-file-metadata-wikibot/requests ;
 #      fi ;
 #    fi
+
+# re-trigger docker-sketchbook ...?
 
 notifications:
   email: false
