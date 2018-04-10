@@ -35,7 +35,7 @@ RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 
 
 #RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/MultiWii_2_4/MultiWii/MultiWii.ino
-RUN arduino --help || true
+CMD arduino --help || true
 
 
 RUN tree
