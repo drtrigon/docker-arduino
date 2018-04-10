@@ -25,11 +25,20 @@ RUN apt-get install -y xz-utils
 # tree
 RUN apt-get install -y tree
 
+# binutils (for readelf)
+RUN apt-get install -y binutils
+
 # Arduino IDE
 RUN wget http://downloads.arduino.cc/arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
 RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+
+# verify code, generate elf+hex
+
+# using USB hardware bridge/forward (all os?) me be we could use it to upload code
+
+# (see example below...)
 
 ### END docker-arduino / START individual dockers resp. testing of docker-arduino ###
 
@@ -49,8 +58,3 @@ RUN export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`
 RUN readelf -a $ELF_FILE
 RUN strings -d $ELF_FILE
 RUN size $ELF_FILE
-
-
-# verify code, generate elf+hex
-
-# using USB hardware bridge/forward (all os?) me be we could use it to upload code
