@@ -25,6 +25,9 @@ RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
 RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 
+### END docker-arduino / START individual dockers ###
+
+RUN git clone https://github.com/drtrigon/sketchbook.git
 
 # setup a pseudo-display
 #RUN "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
@@ -34,8 +37,11 @@ RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 #RUN export DISPLAY=:1.0
 
 
-#RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/MultiWii_2_4/MultiWii/MultiWii.ino
-CMD arduino --help || true
+# run arduin verify
+CMD ls -la sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
+CMD ls -la $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
+#CMD arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/MultiWii_2_4/MultiWii/MultiWii.ino
+CMD arduino --verify --board $BOARD --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
 
 
 RUN tree
