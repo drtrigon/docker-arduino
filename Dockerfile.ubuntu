@@ -5,7 +5,7 @@ MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
 
 # Environment Variables
 ENV ARDUINO_VERSION 1.8.2
-#ENV BOARD "arduino:avr:nano:cpu=atmega328"
+ENV BOARD "arduino:avr:nano:cpu=atmega328"
 
 # Initial update
 RUN apt-get -y update
@@ -44,12 +44,8 @@ RUN git clone https://github.com/drtrigon/sketchbook.git
 
 
 # run arduin verify
-#CMD ls -la sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino 1>&2
-#CMD ls -la $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino 2>&1
-RUN ls -la sketchbook/MultiWii_2_4/MultiWii/
-RUN ls -la $PWD/sketchbook/MultiWii_2_4/MultiWii/
-#CMD arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/MultiWii_2_4/MultiWii/MultiWii.ino
-CMD arduino --verify --board $BOARD --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
+RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
+CMD arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
 
 
 RUN tree
