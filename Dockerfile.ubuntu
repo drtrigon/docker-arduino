@@ -35,20 +35,20 @@ RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 
 RUN git clone https://github.com/drtrigon/sketchbook.git
 
-# setup a pseudo-display
+## setup a pseudo-display
 #RUN "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
-
 #RUN sleep 3
-
 #RUN export DISPLAY=:1.0
-
 
 # run arduin verify
 RUN arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
-CMD arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino
-
 
 RUN tree
+
+RUN export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`
+RUN readelf -a $ELF_FILE
+RUN strings -d $ELF_FILE
+RUN size $ELF_FILE
 
 
 # verify code, generate elf+hex
