@@ -1,4 +1,4 @@
-# ($DOCKER_EMAIL?), $DOCKER_USER and $DOCKER_PASS in Settings > Environment Variables
+# $DOCKER_USER and $DOCKER_PASS in Settings > Environment Variables
 
 language: bash
 
@@ -19,7 +19,6 @@ install:
   - REPO=drtrigon/docker-arduino ;
   - LATEST=ubuntu-14.04 ;
   - echo $DOCKERFILE - $COMMIT - $REPO - $LATEST
-  #- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
   - docker login -u $DOCKER_USER -p $DOCKER_PASS ;
   - docker build -f $DOCKERFILE -t $REPO:$COMMIT . ;
   - docker tag $REPO:$COMMIT $REPO:$DOCKERTAG ;
