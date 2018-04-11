@@ -1,15 +1,22 @@
 # $DOCKER_USER and $DOCKER_PASS in Settings > Environment Variables
 
+# TODO: add support for other Arduino IDE versions; e.g. 1.6.5, 1.8.1, (1.8.2)
+
 language: bash
 
 sudo: false
 
 env:
-  - DOCKERFILE=Dockerfile.ubuntu DOCKERTAG=ubuntu-14.04
-  #- DOCKERFILE=Dockerfile.ubuntu-16.04 DOCKERTAG=ubuntu-16.04
-  #- DOCKERFILE=Dockerfile.centos DOCKERTAG=centos-7
-  #- DOCKERFILE=Dockerfile.debian DOCKERTAG=debian-jessie
-  #- DOCKERFILE=Dockerfile.debian-jessie-toollabs DOCKERTAG=debian-jessie-toollabs
+#  global:
+#    #- ARDUINO_VERSION=1.6.5
+#    #- ARDUINO_VERSION=1.8.1
+#    - ARDUINO_VERSION=1.8.2
+  matrix:
+    - DOCKERFILE=Dockerfile.ubuntu DOCKERTAG=ubuntu-14.04
+    #- DOCKERFILE=Dockerfile.ubuntu-16.04 DOCKERTAG=ubuntu-16.04
+    #- DOCKERFILE=Dockerfile.centos DOCKERTAG=centos-7
+    #- DOCKERFILE=Dockerfile.debian DOCKERTAG=debian-jessie
+    #- DOCKERFILE=Dockerfile.debian-jessie-toollabs DOCKERTAG=debian-jessie-toollabs
 
 services:
   - docker

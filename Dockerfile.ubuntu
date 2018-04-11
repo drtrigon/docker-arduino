@@ -38,4 +38,5 @@ RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 # e.g. use it to verify arduino code, generate elf+hex files,
 # upload code by using USB hardware bridge/forward (all os?)
 
-# see example at https://github.com/drtrigon/docker-sketchbook
+# see examples at https://github.com/drtrigon/docker-arduino
+# working example https://github.com/drtrigon/docker-sketchbook
