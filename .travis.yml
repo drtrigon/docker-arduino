@@ -31,15 +31,20 @@ script:
 #  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
 #  - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
   - docker container ls ;
-  - docker run -t --rm $REPO:$COMMIT apt-get -y update ;
+  - sudo docker ps -l
+  - docker run -t $REPO:$COMMIT apt-get -y update ;
   - docker images ;
   - docker container ls ;
-  - docker run -t $REPO:$COMMIT apt-get install -y git ;
+  - sudo docker ps -l
+  - docker ps -l
+  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
   - docker images ;
   - docker container ls ;
+  - sudo docker ps -l
   - docker run -t $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
   - docker images ;
   - docker container ls ;
+  - sudo docker ps -l
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
   - docker run -t $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
