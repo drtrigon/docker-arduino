@@ -30,17 +30,17 @@ script:
   - docker images ;
   - docker container ls ;
   - docker ps -l ;
-  - docker run -t -d --name testing $REPO:$COMMIT bin/bash ;
+  - docker run -t -d --name abc $REPO:$COMMIT bin/bash ;
   - docker ps -l ;
 #  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
 #  - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
 #  - docker run -t $REPO:$COMMIT apt-get -y update ;
 #  - docker run -t $REPO:$COMMIT apt-get install -y git ;
-  - docker exec -t testing apt-get -y update ;
+  - docker exec -t abc apt-get -y update ;
   - docker ps -l ;
-  - docker exec -t testing apt-get install -y git ;
+  - docker exec -t abc apt-get install -y git ;
   - docker ps -l ;
-  - docker exec -t testing git clone https://github.com/drtrigon/sketchbook.git ;
+  - docker exec -t abc git clone https://github.com/drtrigon/sketchbook.git ;
   - docker ps -l ;
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
@@ -55,7 +55,7 @@ script:
 #  # Upload to docker if it's on the master branch
 #  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
 #      docker push $REPO ;
-    fi
+#    fi
 
 #after_success:
 #  - |-
