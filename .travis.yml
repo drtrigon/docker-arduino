@@ -28,11 +28,13 @@ install:
 
 script:
   - docker images ;
-#  - docker run -w /opt/file-metadata -t --rm $REPO:$COMMIT python -m pytest ;
-  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
-  - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
+#  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
+#  - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
+  - docker run -t $REPO:$COMMIT apt-get install -y git ;
+  - docker run -t $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
-  - docker run -t --rm $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
+#  - docker run -t --rm $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
+  - docker run -t $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
   - docker rmi $REPO:$COMMIT
   # Upload to docker if it's on the master branch
   - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
@@ -49,6 +51,8 @@ script:
 #    fi
 
 # re-trigger docker-sketchbook ...?
+
+# use this manual run method also for docker-sketchbook instead of Dockerfile
 
 notifications:
   email: false
