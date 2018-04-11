@@ -1,4 +1,5 @@
-# $DOCKER_USER and $DOCKER_PASS in Settings > Environment Variables
+# $DOCKER_USER, $DOCKER_PASS (hide) and $TRAVIS_TOKEN (hide) in Settings > Environment Variables
+# Triggering builds (get TOKEN): https://docs.travis-ci.com/user/triggering-builds/
 
 # TODO: add support for other Arduino IDE versions; e.g. 1.6.5, 1.8.1, (1.8.2)
 
@@ -46,16 +47,13 @@ script:
       docker push $REPO ;
     fi
 
-#after_success:
-#  - |-
-#    if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
-#      if [[ "$DOCKERTAG" == "$LATEST" ]] ; then
-#        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/drtrigon%2Fdocker-file-metadata-wikibot/requests ;
-#        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/drtrigon%2Finstall-file-metadata-wikibot/requests ;
-#      fi ;
-#    fi
-
-# re-trigger docker-sketchbook ...?
+after_success:
+  - |-
+    if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
+      if [[ "$DOCKERTAG" == "$LATEST" ]] ; then
+        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/drtrigon%2Fdocker-sketchbook/requests ;
+      fi ;
+    fi
 
 notifications:
   email: false

@@ -79,15 +79,14 @@ script:
   - docker images ;
   - docker run -t -d --name testing $DOCKER:$DOCKERTAG bin/bash ;
   - docker ps -l ;
-  - docker exec -t testing apt-get install -y git ;
-  - docker exec -t testing git clone https://github.com/drtrigon/sketchbook.git ;
-  - docker exec -t testing arduino --verify --board $BOARD --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
+  - docker exec -t testing  apt-get install -y git binutils tree ;
+  - docker exec -t testing  git clone https://github.com/drtrigon/sketchbook.git ;
+  - docker exec -t testing  arduino --verify --board $BOARD --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
   # Output post-verify info
-  - docker exec -t testing arduino export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"` ;
-  - docker exec -t testing arduino readelf -a $ELF_FILE
-  - docker exec -t testing arduino strings -d $ELF_FILE
-  - docker exec -t testing arduino size $ELF_FILE
-  - docker exec -t testing arduino tree
+  - docker exec -t testing  /bin/bash -c 'export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`; readelf -a $ELF_FILE' ;
+  - docker exec -t testing  /bin/bash -c 'export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`; strings -d $ELF_FILE' ;
+  - docker exec -t testing  /bin/bash -c 'export ELF_FILE=`find /tmp/ -name "MultiWii.ino.elf"`; size $ELF_FILE' ;
+  - docker exec -t testing  tree
   - docker stop testing ;
   - docker rm testing ;
   #- docker rmi $DOCKER:$DOCKERTAG
