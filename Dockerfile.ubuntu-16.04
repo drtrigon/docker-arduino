@@ -1,0 +1,43 @@
+# same as Dockerfile.ubuntu (ubuntu-14.04)
+FROM ubuntu:16.04
+MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
+
+# LABEL author.user1="DrTrigon <dr.trigon@surfeu.ch>"
+
+# Environment Variables
+ENV ARDUINO_VERSION 1.8.2
+#ENV BOARD "arduino:avr:nano:cpu=atmega328"
+
+# Initial update
+RUN apt-get -y update
+
+## Basic packages
+#RUN apt-get install -y \
+#  git
+
+# wget
+RUN apt-get install -y wget
+
+# xz (for tar)
+RUN apt-get install -y xz-utils
+
+## binutils (for readelf)
+#RUN apt-get install -y binutils
+
+## tree
+#RUN apt-get install -y tree
+
+# Install Arduino IDE
+RUN wget http://downloads.arduino.cc/arduino-$ARDUINO_VERSION-linux64.tar.xz
+RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
+RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
+RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+
+### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
+
+# add your code here or use this docker in your own Dockerfile FROM ...:...
+# e.g. use it to verify arduino code, generate elf+hex files,
+# upload code by using USB hardware bridge/forward (all os?)
+
+# see examples at https://github.com/drtrigon/docker-arduino
+# working example https://github.com/drtrigon/docker-sketchbook
