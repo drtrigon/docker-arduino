@@ -30,6 +30,7 @@ script:
   - docker images ;
 #  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
 #  - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
+  - docker run -t $REPO:$COMMIT apt-get -y update;
   - docker run -t $REPO:$COMMIT apt-get install -y git ;
   - docker run -t $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board $BOARD --verbose --preserve-temp-files $PWD/sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
