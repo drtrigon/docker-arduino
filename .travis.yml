@@ -28,17 +28,8 @@ install:
 
 script:
   - docker images ;
-#  - docker run -t -d --name testing $REPO:$COMMIT bin/bash ;
-#  - docker ps -l ;
-#  - docker exec -t testing apt-get install -y git ;
-#  - docker exec -t testing git clone https://github.com/drtrigon/sketchbook.git ;
-#  - docker exec -t testing arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
-#  - docker stop testing ;
-#  - docker rm testing ;
-
   - git clone https://github.com/drtrigon/sketchbook.git ;
   - docker run -t --rm -v $PWD/sketchbook:/sketchbook $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
-
   - docker rmi $REPO:$COMMIT
   - docker images ;
   - docker container ls ;
@@ -58,8 +49,6 @@ script:
 #    fi
 
 # re-trigger docker-sketchbook ...?
-
-# use this manual run method also for docker-sketchbook instead of Dockerfile
 
 notifications:
   email: false
