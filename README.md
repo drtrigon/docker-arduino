@@ -77,7 +77,7 @@ install:
 
 script:
   - docker images ;
-  - docker run -t -d --name testing drtrigon/docker-arduino:ubuntu-14.04 bin/bash ;
+  - docker run -t -d --name testing $DOCKER:$DOCKERTAG bin/bash ;
   - docker ps -l ;
   - docker exec -t testing apt-get install -y git ;
   - docker exec -t testing git clone https://github.com/drtrigon/sketchbook.git ;
@@ -90,7 +90,7 @@ script:
   - docker exec -t testing arduino tree
   - docker stop testing ;
   - docker rm testing ;
-  #- docker rmi $REPO:$COMMIT
+  #- docker rmi $DOCKER:$DOCKERTAG
   #- docker images ;
   #- docker container ls ;
   - docker ps -l ;
@@ -103,8 +103,8 @@ or
 script:
   - docker images ;
   - git clone https://github.com/drtrigon/sketchbook.git ;
-  - docker run -t --rm -v $PWD/sketchbook:/sketchbook $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
-  - docker rmi $REPO:$COMMIT
+  - docker run -t --rm -v $PWD/sketchbook:/sketchbook $DOCKER:$DOCKERTAG arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
+  - docker rmi $DOCKER:$DOCKERTAG
   - docker images ;
   - docker container ls ;
   - docker ps -l ;
