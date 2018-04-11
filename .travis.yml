@@ -30,7 +30,7 @@ script:
   - docker images ;
   - docker container ls ;
   - docker ps -l ;
-  - docker run -t -d -name testing $REPO:$COMMIT bin/bash ;
+  - docker run -t -d --name testing $REPO:$COMMIT bin/bash ;
   - docker ps -l ;
 #  - docker run -t --rm $REPO:$COMMIT apt-get install -y git ;
 #  - docker run -t --rm $REPO:$COMMIT git clone https://github.com/drtrigon/sketchbook.git ;
