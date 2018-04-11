@@ -36,9 +36,9 @@ script:
 #  - docker stop testing ;
 #  - docker rm testing ;
 
-  - sudo apt-get install git ;
+#  - sudo apt-get install git ;
   - git clone https://github.com/drtrigon/sketchbook.git ;
-  - docker run -t --rm -v $PWD/sketchbook:. $REPO:$COMMIT ls -la ;
+  - docker run -t --rm -v $PWD/sketchbook:/ $REPO:$COMMIT ls -la ;
   - docker run -t --rm -v $PWD/sketchbook:. $REPO:$COMMIT eval echo ~$USER ;
   - docker run -t --rm -v $PWD/sketchbook:. $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
 
