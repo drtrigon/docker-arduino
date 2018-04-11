@@ -1,4 +1,4 @@
-# same as Dockerfile.ubuntu (ubuntu-14.04)
+# same as Dockerfile.ubuntu (ubuntu-14.04) except for 2 removed 'sudo's
 FROM ubuntu:16.04
 MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
 
@@ -30,8 +30,8 @@ RUN apt-get install -y xz-utils
 # Install Arduino IDE
 RUN wget http://downloads.arduino.cc/arduino-$ARDUINO_VERSION-linux64.tar.xz
 RUN tar xf arduino-$ARDUINO_VERSION-linux64.tar.xz
-RUN sudo mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
-RUN sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+RUN mv arduino-$ARDUINO_VERSION /usr/local/share/arduino
+RUN ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
 
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
 
