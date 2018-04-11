@@ -28,10 +28,7 @@ install:
 
 script:
   - docker images ;
-  - docker container ls ;
-  - docker ps -l ;
   - docker run -t -d --name testing $REPO:$COMMIT bin/bash ;
-  - docker container ls ; # test
   - docker ps -l ;
   - docker exec -t testing apt-get install -y git ;
   - docker exec -t testing git clone https://github.com/drtrigon/sketchbook.git ;
@@ -39,23 +36,16 @@ script:
 #  - docker run -t --rm $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
 #  - docker run -t $REPO:$COMMIT arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
   - docker exec -t testing arduino --verify --board "arduino:avr:nano:cpu=atmega328" --verbose --preserve-temp-files sketchbook/MultiWii_2_4/MultiWii/MultiWii.ino ;
-  - docker images ;
-  - docker container ls ;
-  - docker ps -l ;
   - docker stop testing ;
-#  - docker kill testing ;
   - docker rm testing ;
-  - docker images ;
-  - docker container ls ;
-  - docker ps -l ;
   - docker rmi $REPO:$COMMIT
   - docker images ;
   - docker container ls ;
   - docker ps -l ;
-#  # Upload to docker if it's on the master branch
-#  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
-#      docker push $REPO ;
-#    fi
+  # Upload to docker if it's on the master branch
+  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
+      docker push $REPO ;
+    fi
 
 #after_success:
 #  - |-
